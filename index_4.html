@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Creative Plus — Marketing de performance para entretenimiento online</title>
+<meta name="description" content="Agencia de performance para el rubro de entretenimiento online. Campañas de ROAS medido por comprobantes reales, campañas de volumen de mensajes a bajo costo y nuestro chat propio que reemplaza a WhatsApp y no se bloquea." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#07070c;
+    --bg-2:#0b0b12;
+    --ink:#f4f4fb;
+    --muted:#9a9ab0;
+    --muted-2:#6f6f86;
+    --line:rgba(255,255,255,.08);
+    --card:rgba(255,255,255,.028);
+    --card-2:rgba(255,255,255,.045);
+    --pink:#ff2bd6;
+    --cyan:#00e5ff;
+    --violet:#a855f7;
+    --grad:linear-gradient(120deg,#ff2bd6 0%,#a855f7 45%,#00e5ff 100%);
+    --radius:20px;
+    --maxw:1160px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.6;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{font-family:'Sora',sans-serif;line-height:1.1;letter-spacing:-.02em}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+
+  /* Background glows */
+  .bg-fx{position:fixed;inset:0;z-index:-2;overflow:hidden;pointer-events:none}
+  .orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.5}
+  .orb.a{width:520px;height:520px;background:radial-gradient(circle,rgba(255,43,214,.5),transparent 70%);top:-160px;left:-120px}
+  .orb.b{width:560px;height:560px;background:radial-gradient(circle,rgba(0,229,255,.38),transparent 70%);top:420px;right:-180px}
+  .orb.c{width:480px;height:480px;background:radial-gradient(circle,rgba(168,85,247,.34),transparent 70%);bottom:-120px;left:30%}
+  .grid-fx{position:fixed;inset:0;z-index:-1;pointer-events:none;
+    background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+    background-size:64px 64px;opacity:.35;
+    -webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 30%,transparent 75%);
+    mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 30%,transparent 75%);
+  }
+
+  /* Nav */
+  nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(7,7,12,.6);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .logo{display:flex;align-items:center;gap:10px;font-family:'Sora';font-weight:700;font-size:19px}
+  .logo .dot{width:12px;height:12px;border-radius:50%;background:var(--grad);box-shadow:0 0 14px rgba(255,43,214,.8)}
+  .nav-links{display:flex;gap:30px;align-items:center}
+  .nav-links a{color:var(--muted);font-size:14.5px;font-weight:500;transition:color .2s}
+  .nav-links a:hover{color:var(--ink)}
+  .btn{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-family:'Sora';border-radius:999px;padding:12px 22px;font-size:14.5px;transition:transform .2s,box-shadow .2s;cursor:pointer;border:0}
+  .btn-primary{background:var(--grad);color:#fff;box-shadow:0 8px 30px rgba(255,43,214,.35)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(255,43,214,.5)}
+  .btn-ghost{border:1px solid var(--line);color:var(--ink);background:var(--card)}
+  .btn-ghost:hover{background:var(--card-2);transform:translateY(-2px)}
+  .nav-cta{display:flex;gap:12px;align-items:center}
+
+  /* Hero */
+  header.hero{padding:88px 0 70px;position:relative}
+  .eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:13px;font-weight:600;letter-spacing:.02em;color:var(--muted);
+    border:1px solid var(--line);background:var(--card);padding:8px 16px;border-radius:999px;margin-bottom:26px}
+  .eyebrow .live{width:8px;height:8px;border-radius:50%;background:#22e07a;box-shadow:0 0 10px #22e07a;animation:pulse 1.8s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+  h1{font-size:clamp(38px,5.4vw,62px);font-weight:800}
+  .hero p.lead{color:var(--muted);font-size:clamp(16px,1.6vw,19px);margin-top:22px;max-width:520px}
+  .hero-cta{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
+  .trust{display:flex;gap:26px;margin-top:40px;flex-wrap:wrap}
+  .trust .t{display:flex;flex-direction:column}
+  .trust .t b{font-family:'Sora';font-size:24px;font-weight:700}
+  .trust .t span{font-size:13px;color:var(--muted-2)}
+
+  /* Phone mockup */
+  .phone-stage{position:relative;display:flex;justify-content:center}
+  .phone-glow{position:absolute;inset:-30px;background:var(--grad);filter:blur(70px);opacity:.28;border-radius:50%}
+  .phone{position:relative;width:300px;height:600px;border-radius:42px;background:linear-gradient(160deg,#15151f,#0a0a10);
+    border:1px solid rgba(255,255,255,.12);box-shadow:0 40px 90px rgba(0,0,0,.6),inset 0 0 0 6px #000;padding:12px;z-index:1}
+  .phone .screen{position:relative;width:100%;height:100%;border-radius:32px;overflow:hidden;
+    background:radial-gradient(circle at 50% 0%,#161022,#08060e 60%);display:flex;flex-direction:column}
+  .p-head{display:flex;align-items:center;gap:10px;padding:16px 16px 12px;border-bottom:1px solid rgba(255,255,255,.07)}
+  .p-ava{width:38px;height:38px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-weight:700;font-family:'Sora';font-size:16px;box-shadow:0 0 16px rgba(255,43,214,.6)}
+  .p-name{font-family:'Sora';font-weight:600;font-size:15px}
+  .p-status{font-size:11px;color:#22e07a;display:flex;align-items:center;gap:5px}
+  .p-status i{width:6px;height:6px;border-radius:50%;background:#22e07a;display:inline-block}
+  .p-body{flex:1;padding:16px 14px;display:flex;flex-direction:column;gap:10px;overflow:hidden}
+  .bub{max-width:80%;padding:10px 13px;border-radius:16px;font-size:13px;line-height:1.4;animation:rise .5s both}
+  .bub.in{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.06);align-self:flex-start;border-bottom-left-radius:5px}
+  .bub.out{background:var(--grad);align-self:flex-end;border-bottom-right-radius:5px;color:#fff;box-shadow:0 6px 18px rgba(255,43,214,.35)}
+  @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+  .p-input{margin:0 14px 16px;height:40px;border-radius:999px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);display:flex;align-items:center;padding:0 16px;color:var(--muted-2);font-size:12.5px}
+
+  /* Sections */
+  section{padding:78px 0;position:relative}
+  .sec-head{max-width:640px;margin-bottom:52px}
+  .sec-head .kicker{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--pink);margin-bottom:14px}
+  .sec-head h2{font-size:clamp(28px,3.6vw,42px);font-weight:700}
+  .sec-head p{color:var(--muted);margin-top:16px;font-size:17px}
+
+  /* Services */
+  .svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:34px;position:relative;overflow:hidden;transition:transform .25s,border-color .25s}
+  .card:hover{transform:translateY(-4px);border-color:rgba(255,43,214,.35)}
+  .card .ic{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:22px;
+    background:rgba(255,43,214,.12);border:1px solid rgba(255,43,214,.28)}
+  .card.cyan .ic{background:rgba(0,229,255,.1);border-color:rgba(0,229,255,.28)}
+  .card h3{font-size:22px;font-weight:600;margin-bottom:12px}
+  .card p{color:var(--muted);font-size:15px}
+  .card .tag{display:inline-block;margin-top:18px;font-size:12.5px;font-weight:600;color:var(--cyan);background:rgba(0,229,255,.08);border:1px solid rgba(0,229,255,.2);padding:6px 13px;border-radius:999px}
+  .card.pink .tag{color:var(--pink);background:rgba(255,43,214,.08);border-color:rgba(255,43,214,.22)}
+
+  /* Feature (chat) */
+  .feature{background:linear-gradient(180deg,rgba(255,255,255,.02),transparent)}
+  .feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+  .feat-list{display:flex;flex-direction:column;gap:20px;margin-top:30px}
+  .feat-item{display:flex;gap:16px;align-items:flex-start}
+  .feat-item .chk{flex:0 0 auto;width:30px;height:30px;border-radius:9px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;box-shadow:0 6px 18px rgba(168,85,247,.4)}
+  .feat-item b{font-family:'Sora';font-weight:600;font-size:16px;display:block;margin-bottom:2px}
+  .feat-item span{color:var(--muted);font-size:14.5px}
+  .badge-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+  .badge{font-size:12.5px;font-weight:600;padding:7px 14px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--muted)}
+  .badge.on{color:#22e07a;border-color:rgba(34,224,122,.3);background:rgba(34,224,122,.08)}
+
+  /* ROAS explainer */
+  .roas-box{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:44px}
+  .moment{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:30px;position:relative}
+  .moment .m-num{font-family:'Sora';font-weight:800;font-size:15px;color:var(--pink);letter-spacing:.08em}
+  .moment h4{font-family:'Sora';font-size:20px;font-weight:600;margin:8px 0 12px}
+  .moment p{color:var(--muted);font-size:14.5px}
+  .roas-def{margin-top:26px;background:linear-gradient(120deg,rgba(255,43,214,.08),rgba(0,229,255,.06));border:1px solid var(--line);border-radius:var(--radius);padding:26px 30px}
+  .roas-def b{font-family:'Sora'}
+
+  /* Steps */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;counter-reset:s}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px;position:relative}
+  .step::before{counter-increment:s;content:"0" counter(s);font-family:'Sora';font-weight:800;font-size:34px;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;display:block;margin-bottom:14px}
+  .step h4{font-size:17px;font-weight:600;margin-bottom:8px}
+  .step p{color:var(--muted);font-size:14px}
+
+  /* CTA */
+  .cta{text-align:center;padding:96px 0}
+  .cta-card{background:linear-gradient(135deg,rgba(255,43,214,.12),rgba(0,229,255,.08));border:1px solid var(--line);border-radius:30px;padding:64px 40px;position:relative;overflow:hidden}
+  .cta-card h2{font-size:clamp(30px,4vw,46px);font-weight:800;margin-bottom:18px}
+  .cta-card p{color:var(--muted);font-size:18px;max-width:520px;margin:0 auto 34px}
+
+  /* Footer */
+  footer{border-top:1px solid var(--line);padding:44px 0;color:var(--muted-2)}
+  footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;font-size:14px}
+  footer a{color:var(--muted)}
+  footer a:hover{color:var(--ink)}
+
+  /* Reveal */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.show{opacity:1;transform:none}
+
+  @media(max-width:860px){
+    .hero-grid,.feat-grid{grid-template-columns:1fr}
+    .phone-stage{order:-1;margin-bottom:20px}
+    .svc-grid,.roas-box{grid-template-columns:1fr}
+    .steps{grid-template-columns:1fr 1fr}
+    .nav-links{display:none}
+    header.hero{padding:54px 0 40px}
+  }
+  @media(max-width:520px){
+    .steps{grid-template-columns:1fr}
+    .trust{gap:18px}
+    .cta-card{padding:44px 22px}
+  }
+</style>
+</head>
+<body>
+<div class="bg-fx"><div class="orb a"></div><div class="orb b"></div><div class="orb c"></div></div>
+<div class="grid-fx"></div>
+
+<nav>
+  <div class="wrap">
+    <div class="logo"><span class="dot"></span> Creative<span class="grad-text">Plus</span></div>
+    <div class="nav-links">
+      <a href="#servicios">Servicios</a>
+      <a href="#chat">Nuestro chat</a>
+      <a href="#roas">Cómo medimos</a>
+      <a href="#proceso">Proceso</a>
+    </div>
+    <div class="nav-cta">
+      <a class="btn btn-primary" href="https://wa.me/5492236357892" target="_blank" rel="noopener">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.004c5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.1c-.24.68-1.4 1.3-1.94 1.38-.5.07-1.12.1-1.8-.11-.42-.13-.95-.31-1.64-.6-2.88-1.24-4.76-4.14-4.9-4.33-.14-.19-1.17-1.56-1.17-2.97 0-1.41.74-2.1 1-2.39.26-.29.57-.36.76-.36.19 0 .38 0 .55.01.18.01.42-.07.65.5.24.58.82 2 .89 2.14.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.17-.29.38-.42.51-.14.14-.28.29-.12.57.16.28.71 1.17 1.53 1.9 1.05.94 1.94 1.23 2.22 1.37.28.14.44.12.6-.07.16-.19.69-.81.87-1.09.18-.28.36-.23.6-.14.24.09 1.55.73 1.82.86.27.14.44.21.5.32.07.11.07.64-.17 1.32z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow"><span class="live"></span> Performance para entretenimiento online</span>
+      <h1>Tráfico que llega. Un chat que <span class="grad-text">convierte</span> y no se bloquea.</h1>
+      <p class="lead">Somos la agencia que junta las dos mitades que nadie te da juntas: campañas medidas por plata real y una plataforma de chat propia que reemplaza a WhatsApp — sin bloqueos, con tus operadores adentro.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="https://wa.me/5492236357892" target="_blank" rel="noopener">Hablar por WhatsApp</a>
+        <a class="btn btn-ghost" href="#chat">Ver cómo funciona el chat</a>
+      </div>
+      <div class="trust">
+        <div class="t"><b class="grad-text">ROAS real</b><span>Medido por comprobantes, no estimado</span></div>
+        <div class="t"><b class="grad-text">0 bloqueos</b><span>Chat propio, no depende de WhatsApp</span></div>
+        <div class="t"><b class="grad-text">&lt;30s</b><span>Respuesta humana dentro de la app</span></div>
+      </div>
+    </div>
+    <div class="phone-stage">
+      <div class="phone-glow"></div>
+      <div class="phone">
+        <div class="screen">
+          <div class="p-head">
+            <div class="p-ava">C</div>
+            <div>
+              <div class="p-name">Creative Plus</div>
+              <div class="p-status"><i></i> En línea</div>
+            </div>
+          </div>
+          <div class="p-body">
+            <div class="bub in" style="animation-delay:.1s">¡Tenés 50% extra en tu primera carga! Decime tu nombre y te creo un usuario 🎁</div>
+            <div class="bub out" style="animation-delay:.5s">Hola! Soy Martín, quiero probar 👍</div>
+            <div class="bub in" style="animation-delay:1s">Genial Martín, ya te armo el usuario. ¿Por dónde querés cargar?</div>
+            <div class="bub out" style="animation-delay:1.5s">Transferencia</div>
+            <div class="bub in" style="animation-delay:2s">Listo ✅ Te paso los datos y el bono queda activo al instante.</div>
+          </div>
+          <div class="p-input">Escribí un mensaje…</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="servicios">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Qué hacemos</div>
+      <h2>Dos formas de traer jugadores. Una sola obsesión: que rinda.</h2>
+      <p>Elegís según tu momento. Podés escalar con foco en retorno o inundar de contactos a bajo costo — y en los dos casos medimos de verdad.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="card pink reveal">
+        <div class="ic">📈</div>
+        <h3>Campañas de ROAS</h3>
+        <p>Optimizamos por retorno sobre la inversión, no por métricas de vanidad. Tu campaña primero aprende quién deposita y después escala sobre esos perfiles. Cada peso invertido se mide contra la plata que realmente entra.</p>
+        <span class="tag">Retorno medido por comprobantes reales</span>
+      </div>
+      <div class="card cyan reveal">
+        <div class="ic">💬</div>
+        <h3>Campañas de volumen de mensajes</h3>
+        <p>Cuando necesitás llenar la agenda de contactos, armamos campañas orientadas a maximizar mensajes al menor costo posible. Ideal para alimentar a tus operadores y probar oferta a gran escala sin quemar presupuesto.</p>
+        <span class="tag">Máximo volumen al menor costo por mensaje</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="chat" class="feature">
+  <div class="wrap">
+    <div class="feat-grid">
+      <div class="phone-stage reveal">
+        <div class="phone-glow"></div>
+        <div class="phone">
+          <div class="screen">
+            <div class="p-head">
+              <div class="p-ava">C</div>
+              <div>
+                <div class="p-name">Tu Oficina</div>
+                <div class="p-status"><i></i> Operador en línea</div>
+              </div>
+            </div>
+            <div class="p-body">
+              <div class="bub in">¡Bienvenido! ¿Querés que te active tu bono de bienvenida? 🎁</div>
+              <div class="bub out">Sí, dale</div>
+              <div class="bub in">Perfecto. Te atiende un asesor real ahora mismo 👇</div>
+              <div class="bub in">Soy Caro del equipo, ¿cómo te ayudo?</div>
+              <div class="bub out">Quiero cargar $5000</div>
+            </div>
+            <div class="p-input">Escribí un mensaje…</div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="kicker" style="color:var(--cyan);font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px">La pieza central</div>
+        <h2 style="font-size:clamp(28px,3.6vw,42px);font-weight:700">Nuestro chat propio. El que reemplaza a WhatsApp y no se bloquea.</h2>
+        <div class="badge-row" style="margin-top:22px">
+          <span class="badge on">Sin bloqueos</span>
+          <span class="badge">Marca propia</span>
+          <span class="badge">Operadores adentro</span>
+          <span class="badge">Medición Meta</span>
+        </div>
+        <p style="color:var(--muted);font-size:16px">El jugador llega desde el anuncio a una página que parece una app de mensajería, con tu marca y tus colores. No es WhatsApp: no depende de su API y no se cae por bloqueos. Todo el chat vive en tu propia plataforma.</p>
+        <div class="feat-list">
+          <div class="feat-item"><span class="chk">✓</span><div><b>No se bloquea nunca</b><span>Al ser tu propio chat, no hay número que Meta pueda banear. La conversación no se corta.</span></div></div>
+          <div class="feat-item"><span class="chk">✓</span><div><b>Atención humana dentro de la app</b><span>Un bot rompe el hielo y tus operadores responden en vivo desde su panel, en menos de 30 segundos.</span></div></div>
+          <div class="feat-item"><span class="chk">✓</span><div><b>Conversiones que Meta entiende</b><span>Cada carga confirmada se reporta a Meta (Pixel + Conversions API) para que la campaña optimice sola hacia tus mejores jugadores.</span></div></div>
+          <div class="feat-item"><span class="chk">✓</span><div><b>CRM, métricas y Black List</b><span>Etapas de cliente, panel de métricas de la oficina y bloqueo de usuarios que molestan o mandan comprobantes falsos.</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="roas">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Cómo medimos</div>
+      <h2>Tu campaña no arranca vendiendo. Arranca aprendiendo.</h2>
+      <p>No optimizamos contra estimaciones de Meta. Optimizamos contra los depósitos reales de tus jugadores. Así se ve el proceso.</p>
+    </div>
+    <div class="roas-box">
+      <div class="moment reveal">
+        <div class="m-num">MOMENTO 1 · DÍAS 1–7</div>
+        <h4>Comprás información</h4>
+        <p>La primera semana la campaña junta datos: aprende qué perfiles convierten. No estás comprando depósitos todavía, estás comprando información para decidir bien.</p>
+      </div>
+      <div class="moment reveal">
+        <div class="m-num">MOMENTO 2 · DÍA 7+</div>
+        <h4>Comprás valor</h4>
+        <p>Con los depósitos verificados, la campaña optimiza hacia los jugadores que realmente dejan plata. Ahí es donde el ROAS empieza a trabajar a tu favor.</p>
+      </div>
+    </div>
+    <div class="roas-def reveal">
+      <b class="grad-text">¿Qué es el ROAS?</b> &nbsp;Es cuánto vuelve por cada peso que entra. Si invertís $100 y tus jugadores depositan $350, tu ROAS es 3,5. Trabajamos con tu propia cuenta publicitaria y visibilidad del gasto en tiempo real, para que el número no sea una promesa: sea un hecho verificable.
+    </div>
+  </div>
+</section>
+
+<section id="proceso">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Cómo trabajamos</div>
+      <h2>De cero a jugadores cargando, en cuatro pasos.</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><h4>Armamos tu chat</h4><p>Montamos tu plataforma de chat con tu marca, colores y bono de bienvenida. Lista para recibir tráfico.</p></div>
+      <div class="step reveal"><h4>Lanzamos la campaña</h4><p>ROAS o volumen de mensajes, con tu cuenta publicitaria y el Pixel midiendo cada paso.</p></div>
+      <div class="step reveal"><h4>Tus operadores atienden</h4><p>El tráfico entra al chat, tus asesores responden en vivo y confirman las cargas desde el panel.</p></div>
+      <div class="step reveal"><h4>Optimizamos por dato real</h4><p>Cada carga reportada afina la campaña. Escalamos sobre lo que rinde, semana a semana.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <div class="cta-card reveal">
+      <h2>¿Armamos tu operación?</h2>
+      <p>Campañas que se miden con plata real y un chat que tus jugadores no pueden perder. Te mostramos todo en una charla.</p>
+      <a class="btn btn-primary" style="font-size:16px;padding:15px 30px" href="https://wa.me/5492236357892" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.004c5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.1c-.24.68-1.4 1.3-1.94 1.38-.5.07-1.12.1-1.8-.11-.42-.13-.95-.31-1.64-.6-2.88-1.24-4.76-4.14-4.9-4.33-.14-.19-1.17-1.56-1.17-2.97 0-1.41.74-2.1 1-2.39.26-.29.57-.36.76-.36.19 0 .38 0 .55.01.18.01.42-.07.65.5.24.58.82 2 .89 2.14.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.17-.29.38-.42.51-.14.14-.28.29-.12.57.16.28.71 1.17 1.53 1.9 1.05.94 1.94 1.23 2.22 1.37.28.14.44.12.6-.07.16-.19.69-.81.87-1.09.18-.28.36-.23.6-.14.24.09 1.55.73 1.82.86.27.14.44.21.5.32.07.11.07.64-.17 1.32z"/></svg>
+        Escribinos por WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="logo"><span class="dot"></span> Creative<span class="grad-text">Plus</span></div>
+    <div>© 2026 Creative Plus · Marketing de performance para entretenimiento online</div>
+    <a href="https://wa.me/5492236357892" target="_blank" rel="noopener">+54 9 223 635 7892</a>
+  </div>
+</footer>
+
+<script>
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target)}})},{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
